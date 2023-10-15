@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ДЗ 23. Реалізувати подобу інтернет-магазину</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="category-list">
+            <H1>КАТАЛОГ</H1>  
+            <ul class="list">
+                <li class="list_item" >
+                    <h3 class="list_name"  data-category="bouquet">Букети</h3>
+                </li>
+                <li class="list_item">
+                    <h3 class="list_name"  data-category="flower">Квіти</h3>
+                </li>
+                <li class="list_item">
+                    <h3 class="list_name"  data-category="candy">Цукерки</h3>
+                </li>
+            </ul>      
+        </div>
+        <div class="product-list">
+           <div class="block_category">
+            <ul class="product_list" id="bouquet">
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/image.svg" alt="Freedom" class="img_product">
+                        <h2 class="name_product">Троянда Freedom </h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Троянда Freedom</h2>
+                        <img src="./img/image.svg" alt="Freedom" class="img_product">
+                        <p class="info_block">51 шт.</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/image2.svg" alt="Мінібукет" class="img_product">
+                        <h2 class="name_product">Мінібукет </h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Мінібукет</h2>
+                        <img src="./img/image2.svg" alt="Мінібукет" class="img_product">
+                        <p class="info_block">1600-6</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/image3.svg" alt="Бархатний сезон" class="img_product">
+                        <h2 class="name_product">Бархатний сезон</h2>
+                    </div>
+                    <div class="product_block">                        
+                        <h2 class="title_product">Бархатний сезон</h2>
+                        <img src="./img/image3.svg" alt="Бархатний сезон" class="img_product">
+                        <p class="info_block">100шт.</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+            </ul>
+            <ul class="product_list" id="flower">
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/image2_1.svg" alt="ires" class="img_product">
+                        <h2 class="name_product">Ірис</h2>
+                    </div>                    
+                    <div class="product_block">
+                        <h2 class="title_product">Ірис</h2>
+                        <img src="./img/image2_1.svg" alt="ires" class="img_product">
+                        <p class="info_block">100шт</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/2_2.svg" alt="rose" class="img_product">
+                        <h2 class="name_product">Роза</h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Роза</h2>
+                        <img src="./img/2_2.svg" alt="rose" class="img_product">
+                        <p class="info_block">100шт</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/2_3.svg" alt="eustoma" class="img_product">
+                        <h2 class="name_product">Еустома</h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Еустома</h2>
+                        <img src="./img/2_3.svg" alt="eustoma" class="img_product">
+                        <p class="info_block">100шт</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+            </ul>
+            <ul class="product_list" id="candy">
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/candy1.svg" alt="chocolate" class="img_product">
+                        <h2 class="name_product">Шоколад</h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Шоколад</h2>
+                        <img src="./img/candy1.svg" alt="chocolate" class="img_product">
+                        <p class="info_block">100 г</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/candy2.svg" alt="chocolate" class="img_product">
+                        <h2 class="name_product">Шоколад</h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Шоколад</h2>
+                        <img src="./img/candy2.svg" alt="chocolate" class="img_product">
+                        <p class="info_block">100 г</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+                <li class="product_item">
+                    <div class="product_card">
+                        <img src="./img/candy3.svg" alt="chocolate" class="img_product">
+                        <h2 class="name_product">Шоколад</h2>
+                    </div>
+                    <div class="product_block">
+                        <h2 class="title_product">Шоколад</h2>
+                        <img src="./img/candy3.svg" alt="chocolate" class="img_product">
+                        <p class="info_block">100 г</p>
+                        <button class="buy">Купити</button>
+                    </div>
+                </li>
+            </ul>
+           </div>           
+        </div>
+        <div class="product-info">           
+        </div>
+    </div>
+       
+    <script src="./script.js"></script>
+</body>
+</html>
