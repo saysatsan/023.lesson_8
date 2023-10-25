@@ -1,42 +1,71 @@
-//відкривання категорій
-const nameCategorys = document.querySelectorAll(".list_name");
-const productLists  = document.querySelectorAll(".product_list");
+const data = {
+    categories: [
+      "Букети",
+      "Квіти",
+      "Цукерки"
+    ],
+    products: {
+      "Букети": [
+        { name: "Бархатний сезон", description: "Опис товару Бархатний сезон" },
+        { name: "Мінібукет", description: "Опис товару Мінібукет" }
+      ],
+      "Квіти": [
+        { name: "Троянда Freedom", description: "Опис товару Троянда Freedom" },
+        { name: "Ірис", description: "Опис товару Ірис" }
+      ],
+      "Цукерки": [
+        { name: "Шоколад", description: "Опис товару Шоколад" },
+        { name: "Цукерки", description: "Опис товару Цукерки" }
+      ],
+    }
+};
+  
 
-nameCategorys.forEach(nameCategory =>{
-    nameCategory.addEventListener("click",() => {
-        const category = nameCategory.dataset.category;
-        productLists.forEach(productList => {
-            productList.classList.remove('product_list_open');
-        });
-        const selectedProductList = document.getElementById(category);
-        selectedProductList.classList.add('product_list_open');
+(function Categories() {
+    const categoriesDiv = document.getElementById("categories");
+    categoriesDiv.innerHTML = "";
+    data.categories.forEach(category => {
+      const categoryName = document.createElement("div");
+      categoryName.textContent = category;
+      categoryName.addEventListener("click", () => Products(category));
+      categoriesDiv.appendChild(categoryName);
     });
-})
+})();
 
 
-// відкривання продукту
-const products = document.querySelectorAll(".product_item");
-const productInfoblocks = document.querySelectorAll(".product_block")
 
-products.forEach(product =>{
-    product.addEventListener("click", (e) =>{
-        productInfoblocks.forEach(productInfoblock =>{
-            productInfoblock.classList.remove('product_block_open');
-        })
-        const productInfo = e.currentTarget.querySelector(".product_block");
-        productInfo.classList.add("product_block_open"); 
-    })
-})
+function Products(category) {
+    const productsDiv = document.getElementById("products");
+    productsDiv.innerHTML = "";
+    data.products[category].forEach(product => {
+      const productName = document.createElement("div");
+      productName.textContent = product.name;
+      productName.addEventListener("click", () => ProductInfo(product));
+      productsDiv.appendChild(productName);
+    });
+}
 
-//події на кнопку
-const btBuys = document.querySelectorAll(".buy");
 
-btBuys.forEach(btBuy =>{
-    btBuy.addEventListener("click",()=>{        
-        alert("Ваше замовлення прийняте");
-        location.reload();
-    })
-   
 
-})
+
+function ProductInfo(product) {
+    const productInfoDiv = document.getElementById("productInfo");
+    productInfoDiv.innerHTML = "";
+    const productName = document.createElement("h2");
+    productName.textContent = product.name;
+    
+    const productDescription = document.createElement("p");
+    productDescription.textContent = product.description;
+    
+    const buyButton = document.createElement("button");
+    buyButton.textContent = "Купити";
+    productInfoDiv.appendChild(productName);
+    productInfoDiv.appendChild(productDescription);
+    productInfoDiv.appendChild(buyButton);
+    buyButton.addEventListener("click", () => {
+      alert(`Товар "${product.name}" куплено!`);
+      location.reload();    
+    });    
+}
+
 
