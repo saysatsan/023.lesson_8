@@ -1,6 +1,6 @@
 # 023.lesson_8 + 043.lesson_21
 
-## The project was deployed on the GitHub page using the [link](https://saysatsan.github.io/043.lesson_21/)
+## The project was deployed on the GitHub page using the [link](https://saysatsan.github.io/023.lesson_8/)
 
 ## 023.lesson_8
 Дано 3 блоки
