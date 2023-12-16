@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Iceland';
+    font-style: normal;
+    font-weight: 400;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-evenly;
+    height: 100vh;
+}
+
+
