@@ -6,51 +6,92 @@ const data = {
     ],
     products: {
       "Букети": [
-        { name: "Бархатний сезон", description: "Опис товару Бархатний сезон" },
-        { name: "Мінібукет", description: "Опис товару Мінібукет" }
+        { 
+          img: 'images/7.svg',
+          name: "Бархатний сезон", 
+          description: "Бархатний Сезон - елегантний та неповторний букет, який приваблює своєю розкішшю та барвистістю" 
+        },
+        { 
+          img: 'images/6.svg',
+          name: "Мінібукет", 
+          description: "Цей компактний букет несе у собі велике значення та емоції в невеликому форматі, ідеально підходячи для подарунків та виявлення найтепліших почуттів." 
+        }
       ],
       "Квіти": [
-        { name: "Троянда Freedom", description: "Опис товару Троянда Freedom" },
-        { name: "Ірис", description: "Опис товару Ірис" }
+        { 
+          img: 'images/1.svg',
+          name: "Троянда Freedom", 
+          description: "Троянда Freedom - виразна краса та символ безмежної любові. " 
+        },
+        { 
+          img: 'images/8.svg',
+          name: "Ірис", 
+          description: 'Це квітка, яка вражає своєю неповторною красою та грацією. Її елегантні квітки з характерними "лепестками" надають їй витончений вигляд, який приваблює увагу. "Ірис" символізує мудрість, повагу та гармонію, і є відмінним вибором для вираження почуттів при даруванні. ' 
+        }
       ],
       "Цукерки": [
-        { name: "Шоколад", description: "Опис товару Шоколад" },
-        { name: "Цукерки", description: "Опис товару Цукерки" }
+        { 
+          img: 'images/4.svg',
+          name: "Шоколад", 
+          description: 'Витончений та неповторний десерт, створений з любов\'ю та майстерністю. Наш майстер шоколатьє вдається об\'єднати вишуканий смак та хрусткість, доповнюючи його особливими інгредієнтами та унікальними фруктовими та горішковими нюансами. ' 
+        },
+        { 
+          img: 'images/3.svg',
+          name: "Цукерки", 
+          description: 'Кожна цукерка - це витончений шедевр, в якому поєднуються особливі аромати, текстури та смакові враження.' 
+        }
       ],
     }
 };
-  
 
-(function Categories() {
-    const categoriesDiv = document.getElementById("categories");
+const categoriesDiv = document.getElementById("categories"); 
+const productsDiv = document.getElementById("products");
+const productInfoDiv = document.getElementById("productInfo");
+
+(function Categories() {    
     categoriesDiv.innerHTML = "";
     data.categories.forEach(category => {
-      const categoryName = document.createElement("div");
+      const categoryName = document.createElement("a");
+      categoryName.classList.add('title');
       categoryName.textContent = category;
+      
       categoryName.addEventListener("click", () => Products(category));
-      categoriesDiv.appendChild(categoryName);
+      
+      categoriesDiv.append(categoryName);
     });
 })();
 
+function Products(category) {    
+  productsDiv.innerHTML = "";
+  productsDiv.style.backgroundColor = '#ff9900';
 
+  data.products[category].forEach(product => {
+    const productCard = document.createElement("div");
+    productCard.classList.add('productCard');
 
-function Products(category) {
-    const productsDiv = document.getElementById("products");
-    productsDiv.innerHTML = "";
-    data.products[category].forEach(product => {
-      const productName = document.createElement("div");
-      productName.textContent = product.name;
-      productName.addEventListener("click", () => ProductInfo(product));
-      productsDiv.appendChild(productName);
-    });
+    const imgProduct = document.createElement('img');
+    imgProduct.src = product.img;
+    imgProduct.alt = product.name;
+
+    const productName = document.createElement("div");
+    productName.classList.add('productName');
+    productName.textContent = product.name;
+
+    productCard.append(imgProduct, productName);
+    
+    productCard.addEventListener("click", () => ProductInfo(product));
+
+    productsDiv.append(productCard);
+  });
 }
 
-
-
-
-function ProductInfo(product) {
-    const productInfoDiv = document.getElementById("productInfo");
+function ProductInfo(product) {    
     productInfoDiv.innerHTML = "";
+    productInfoDiv.style.borderLeft = '1px solid #ff9900';
+    const imgProduct = document.createElement('img');
+    imgProduct.src = `${product.img}`;
+    imgProduct.alt = product.name;
+
     const productName = document.createElement("h2");
     productName.textContent = product.name;
     
@@ -59,13 +100,103 @@ function ProductInfo(product) {
     
     const buyButton = document.createElement("button");
     buyButton.textContent = "Купити";
-    productInfoDiv.appendChild(productName);
-    productInfoDiv.appendChild(productDescription);
-    productInfoDiv.appendChild(buyButton);
+
+    productInfoDiv.append(imgProduct, productName, productDescription, buyButton);
+ 
     buyButton.addEventListener("click", () => {
-      alert(`Товар "${product.name}" куплено!`);
-      location.reload();    
-    });    
+      if (!document.querySelector(".orderForm")) {
+        showOrderForm(product);
+      }
+    }) 
 }
 
+function showOrderForm(product) {
+  const orderForm = document.createElement("form");
+  orderForm.classList.add("orderForm");
+  orderForm.textContent = '';
 
+  const fullNameInput = createFormInput("text", "fullName", "ПІБ");
+  const cityInput = createFormInput("text", "city", "Місто");
+  const novaPoshtaInput = createFormInput("text", "novaPoshta", "Відділення Нової пошти");
+  const paymentMethodInput = createFormSelect("paymentMethod", ["Післяплата", "Оплата банківською карткою"]);
+  const quantityInput = createFormInput("number", "quantity", "Кількість");
+  
+  const commentInput = document.createElement('textarea');
+  commentInput.name = 'comment';
+  commentInput.placeholder = 'Коментар до замовлення';
+
+  const submitButton = document.createElement("button");
+  submitButton.textContent = "Замовити";
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    submitOrder(product);
+  });
+
+  orderForm.append(
+    fullNameInput,
+    cityInput,
+    novaPoshtaInput,
+    paymentMethodInput,
+    quantityInput,
+    commentInput,
+    submitButton
+  );
+
+  productInfoDiv.append(orderForm);
+}
+
+function createFormInput(type, name, placeholder) {
+  const input = document.createElement("input");
+  input.type = type;
+  input.name = name;
+  input.placeholder = placeholder;
+  return input;
+}
+
+function createFormSelect(name, options) {
+  const select = document.createElement("select");
+  select.name = name;
+
+  options.forEach(optionText => {
+    const option = document.createElement("option");
+    option.value = optionText;
+    option.text = optionText;
+    select.add(option);
+  });
+
+  return select;
+}
+
+function submitOrder(product) {
+  const orderForm = document.querySelector(".orderForm");
+
+  if (!orderForm) {
+    console.error('Form not found');
+    return;
+  }
+
+  const formData = new FormData(orderForm);
+  const orderData = {};
+  formData.forEach((value, key) => {
+    orderData[key] = value;
+  });
+  
+  if (!orderData.fullName || !orderData.city || !orderData.novaPoshta || !orderData.paymentMethod || !orderData.quantity) {
+    alert("Будь ласка, заповніть всі обов'язкові поля");
+    return;
+  }
+  
+  const orderInfo = document.createElement("div");
+  orderInfo.classList.add("order-info");
+
+  const productInfo = document.createElement("p");
+  productInfo.textContent = `Товар: ${product.name}, Кількість: ${orderData.quantity}`;
+
+  const deliveryInfo = document.createElement("p");
+  deliveryInfo.textContent = `Доставка: ${orderData.city}, Склад Нової пошти: ${orderData.novaPoshta}, Спосіб оплати: ${orderData.paymentMethod}`;
+
+  orderInfo.append(productInfo, deliveryInfo);
+  productInfoDiv.append(orderInfo);
+
+  orderForm.reset();
+}
