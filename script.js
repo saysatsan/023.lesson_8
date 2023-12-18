@@ -59,7 +59,7 @@ const productInfoDiv = document.getElementById("productInfo");
 const ORDER_LOCAL_KEY = 'order';
 
 // RENDER CATEGORIES
-(function Categories() {    
+(function categories() {    
   categoriesDiv.innerHTML = "";
     
   const buttonOrders = document.createElement('button');
@@ -76,14 +76,14 @@ const ORDER_LOCAL_KEY = 'order';
     categoryName.classList.add('title');
     categoryName.textContent = category;
       
-    categoryName.addEventListener("click", () => Products(category));
+    categoryName.addEventListener("click", () => products(category));
       
     categoriesDiv.append(categoryName, buttonOrders);
   });
 })();
 
 // RENDER PRODUCTS
-function Products(category) {    
+function products(category) {    
   productsDiv.innerHTML = "";
   productsDiv.style.backgroundColor = '#ff9900';
 
@@ -101,14 +101,14 @@ function Products(category) {
 
     productCard.append(imgProduct, productName);
     
-    productCard.addEventListener("click", () => ProductInfo(product));
+    productCard.addEventListener("click", () => productInfo(product));
 
     productsDiv.append(productCard);
   });
 }
 
 // RENDER INFO ABOUT PRODUCT
-function ProductInfo(product) {    
+function productInfo(product) {    
     productInfoDiv.innerHTML = "";
     productInfoDiv.style.borderLeft = '1px solid #ff9900';
 
