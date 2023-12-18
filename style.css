@@ -7,8 +7,7 @@
     font-weight: 400;
 }
 
-.wrapper{
-    
+.wrapper{    
     display: flex;
     justify-content: space-between;
     height: 100vh;
@@ -93,5 +92,40 @@ img{
   
 .order-info {
     margin-top: 20px;
+}
+
+.productPrice{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonOrders{
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #000;
+    color: #fff; 
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.buttonOrders:hover{
+    background-color: #ff9900;
+}
+
+.orderCard{
+    margin-bottom: 20px;
+}
+.previewOrder{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    
+}
+.fullInfoOrder{
+    display: none;
+}
+.showFullInfo{
+    display: block;
 }
 
